@@ -1,0 +1,145 @@
+// this is old code of quote container 
+<div class="mb-6 mt-11">
+                        <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 ml-2 md:ml-5">Top Albums<h1>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4 px-2 md:px-5">
+
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-4xl md:text-lg  font-bold poppins-regular poppins-bold">Bollywood</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-lg md:text-lg poppins-bold ">Electronic</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-lg md:text-lg poppins-bold ">Mood</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-lg md:text-lg poppins-bold ">Pop</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-lg md:text-lg poppins-bold ">Punjabi 101</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-lg md:text-lg poppins-bold ">Ghazals</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                        <div class="relative flex flex-col items-center">
+                                            <div
+                                            class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                            <p class="text-lg md:text-lg poppins-bold ">Lofi Vibes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+
+
+
+
+
+                        <!-- Quote Container -->
+                        <div id="quoteContainer" class="quote-container mt-11 mb-6 w-full h-16 flex items-center justify-center bg-[#181818] rounded-xl overflow-hidden relative">
+                            <div id="quoteWrapper" class="absolute w-full h-full flex flex-col items-center justify-center overflow-hidden">
+                                <div id="quote" class="text-center opacity-100 transform translate-y-0 transition-transform duration-700 ease-in-out text-white font-semibold italic">
+                                    "Believe in yourself!"
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 mt-11">
+                            <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-7 ml-2 md:ml-5">Top Albums</h1>
+                            <div class="overflow-hidden whitespace-nowrap">
+                                <div class="inline-block animate-marquee">
+                                    <div class="grid grid-cols-7 gap-2 md:gap-4 px-2 md:px-5">
+                                        <!-- Repeat your items here -->
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Bollywood</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Repeat for other items -->
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Add more items as needed -->
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                                    <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

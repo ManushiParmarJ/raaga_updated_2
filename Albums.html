@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raaga | Web Music Player : Music for Everyone</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Raaga_style.css"/>
+
+    <!-- JavaScript -->
+    <script src="Albums_script.js" defer></script>
+    
+    <!-- Google Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Google MerriWeather Font for Brand Name -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif+Hentaigana:wght@200..900&family=Nova+Round&family=Nunito:ital@0;1&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!--Link for play Icon in Playlist-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="bg-slate-900 text-white">
+    <div class="h-screen flex">
+        <div class="w-full flex bg-black">
+
+            <main class="flex-1 flex flex-col h-screen bg-gradient-to-b from-[#181818] via-[#282828] to black">
+                <!-- Header -->
+                <header class="bg-black p-3">
+                    <div class="flex items-center justify-between">
+
+                        <div class="flex items-center gap-2 ">
+                            <!-- <img src="Images/logo.svg" alt="Logo" class="w-7 h-7"/> -->
+                                <h1 class="text-3xl inline-block text-transparent bg-gradient-to-br from-pink-200 via-purple-400 to-indigo-600 bg-clip-text  poppins-regular">Raaga</h1>
+                        </div>
+
+                        <!-- Search Bar with SVG and separator line -->
+                        <div class="flex-1 max-w-2xl mx-4">
+                            <div class="relative">
+                                <!-- Search Input -->
+                                <input 
+                                    id="searchBox" 
+                                    type="text" 
+                                    placeholder="What do you want to listen?" 
+                                    class="w-full pl-14 pr-10 py-2 rounded-full bg-[#282828] text-white border border-transparent 
+                                    focus:outline-none focus:ring-2 focus:ring-white focus:border-white
+                                    transition-all duration-150 ease-in-out hover:outline-none hover:ring-2 hover:ring-white hover:border-white" 
+                                />
+
+                                <!-- Search Icon -->
+                                <img 
+                                    src="Images/search.svg" 
+                                    alt="search logo"
+                                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 cursor-pointer"
+                                    onclick="document.getElementById('searchBox').focus()" 
+                                />
+
+                                <!-- Separator Line -->
+                                <div class="absolute left-10 top-1/2 -translate-y-1/2 h-5 w-px bg-gray-400"></div>
+
+                                <!-- Custom Clear Button (initially hidden) -->
+                                <button 
+                                    id="clearSearch" 
+                                    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white hidden"
+                                    aria-label="Clear search"
+                                >
+                                    <img src="Images/cancel.svg" alt="" class="w-5 h-5">
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar with SVG and seperator line finished -->
+
+                        <!-- Links of Header -->
+                        <div class="header-links flex gap-4 items-center px-4 py-2">
+                            <div class="flex items-center justify-between gap-2 bg-[#181818]">
+                                <a href="#" class="group flex gap-2 items-center px-4 py-2 transition-transform duration-200 hover:[scale:1.03]">
+                                    <div class="flex items-center gap-2">
+                                        <img src="Images/liked_songs_grey.svg" alt="Liked Songs SVG" class="w-3.5 h-3.5  transition-all duration-200" data-hover="Images/liked_songs_white.svg">
+                                        <span class="font-bold text-base text-[#B3B3B3] transition-colors duration-200 group-hover:text-white">Liked Songs</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-2 items-center px-4 py-2 transition-transform duration-200 hover:[scale:1.03]">
+                                    <div class="flex items-center gap-2">
+                                        <img src="Images/playlists_grey.svg" alt="Liked Songs SVG" class="w-3.5 h-3.5  transition-all duration-200" data-hover="Images/playlists_white.svg">
+                                        <span class="font-bold text-base text-[#B3B3B3] transition-colors duration-200 group-hover:text-white">PlayLists</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="flex items-center gap-2 px-4 py-2 ml-2 bg-white text-black font-bold rounded-xl transition-all ease-in-out duration-200 hover:[scale:1.05] text-lg">
+                                <img src="Images/premium.svg" alt="Get Premium SVG" class="w-6 h-6 transition-all duration-200 group-hover:scale-110">
+                                <span class="font-bold text-lg text-black transition-colors duration-200">Get Premium</span>
+                            </div>
+
+                        <div class="flex items-center gap-4 bg-[#181818] justify-between">
+                            <button id="loginButton" class="px-4 py-2 text-[#B3B3B3] font-bold hover:text-white hover:[scale:1.05] ease-in-out text-lg">Login</button>
+                            <button id="signinButton" class="px-4 py-2 ml-2 bg-white text-black font-bold rounded-xl transition-all ease-in-out duration-200 hover:[scale:1.05] text-lg">Sign In</button>
+                        </div>
+                    </div>
+                </header>
+                <!-- Header Finished -->
+
+                <!--For albums-->
+                <div class="flex-1 overflow-y-auto playlist-bg">
+                    <!-- Banner Image and Title -->
+                    <div class="flex items-center gap-6 p-8">
+                        <div class="w-52 h-52 overflow-hidden rounded-lg shadow-lg justify-center">
+                            <img id="albumImage" src="" alt="Playlist Banner" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-400 uppercase">Playlist</p>
+                            <h1 id="albumTitle" class="text-6xl font-bold"></h1>
+                            <p id="albumArtist" class="text-gray-300 mt-2"></p>
+                            <p id="albumDescription" class="text-gray-400 mt-1"></p>
+                            <button class="w-14 h-14 bg-green-500 mt-2 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-md">
+                            <i class="fas fa-play text-2xl"></i>
+                        </div>
+                    </div>
+            
+                    <!-- Songs List -->
+                    <div class="px-8 py-6">
+                        <div class="bg-black/20 rounded-lg" id="songList">
+                            <!-- Songs will be loaded dynamically here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Music Player Bar -->
+                <div id="musicPlayer" class="fixed bottom-0 left-0 w-full bg-[#181818] p-4 flex items-center justify-between hidden">
+                    <div class="flex items-center gap-4">
+                        <img id="playerImage" src="" alt="Song Art" class="w-14 h-14 rounded">
+                        <div>
+                            <h3 id="playerTitle" class="text-white text-lg font-semibold"></h3>
+                            <p id="playerArtist" class="text-gray-400 text-sm"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-6">
+                        <button id="prevBtn" class="text-white text-xl"><i class="fas fa-step-backward"></i></button>
+                        <button id="playPauseBtn" class="text-white text-2xl"><i class="fas fa-play"></i></button>
+                        <button id="nextBtn" class="text-white text-xl"><i class="fas fa-step-forward"></i></button>
+                    </div>
+
+                    <audio id="audioPlayer" src=""></audio>
+                </div>
+
+            </main> 
+
+            <!-- Background Layer with Blur -->
+            <div id="blurLayer" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-lg z-40 hidden"></div>
+
+            <!-- Login Modal -->
+            <div id="loginModal"
+                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#181818] p-8 rounded-lg shadow-xl w-96 max-w-sm z-50 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-semibold">Login</h2>
+                    <button class="close-modal text-gray-500 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label for="login-name" class="block text-base font-medium text-slate-300">Name</label>
+                        <input type="text" id="login-name" name="name" class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-white focus:border-white 
+                            transition-all duration-200 ease-in-out bg-gray-700" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="login-email" class="block text-base font-medium text-slate-300">Email</label>
+                        <input type="email" id="login-email" name="email"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-gray-700"
+                            required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-base font-medium text-slate-300">Password</label>
+                        <input type="password" id="login-password" name="password"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-slate-700"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Login</button>
+                </form>
+                <hr class="my-6 border-slate-600">
+                <div class="text-center">
+                    <p class="text-base text-slate-400">Don't have an Account?
+                        <a href="#" id="goToSignIn" class="text-indigo-500 hover:text-indigo-400">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sign Up Modal -->
+            <div id="signinModal"
+                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#181818] p-8 rounded-lg shadow-xl w-96 max-w-sm z-50 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-semibold">Sign Up</h2>
+                    <button class="close-modal text-gray-500 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label for="signin-email" class="block text-base font-medium text-slate-300">Email</label>
+                        <input type="email" id="signin-email" name="email"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-slate-700"
+                            required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="signin-password" class="block text-base font-medium text-slate-300">Password</label>
+                        <input type="password" id="signin-password" name="password"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-slate-700"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign
+                        Up</button>
+                </form>
+                <hr class="my-6 border-slate-600">
+                <div class="text-center">
+                    <p class="text-base text-slate-400">Already have an Account?
+                        <a href="#" id="goToLogin" class="text-indigo-500 hover:text-indigo-400">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

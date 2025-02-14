@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raaga | Web Music Player : Music for Everyone</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Raaga_style.css" />
+
+    <!-- JavaScript -->
+    <script src="Raaga_script.js" defer></script>
+    
+    <!-- Google Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- Google MerriWeather Font for Brand Name -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Noto+Serif+Hentaigana:wght@200..900&family=Nova+Round&family=Nunito:ital@0;1&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- <style>
+        /* this css is for marquee */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 28s linear infinite;
+        }
+    </style>     -->
+</head>
+
+<body class="bg-slate-900 text-white">
+    <div class="h-screen flex">
+        <div class="w-full flex bg-black">
+
+            <main class="flex-1 flex flex-col h-screen bg-gradient-to-b from-[#181818] via-[#282828] to black">
+                <!-- Header -->
+                <header class="bg-black p-3">
+                    <div class="flex items-center justify-between">
+
+                        <div class="flex items-center gap-2 ">
+                            <!-- <img src="Images/logo.svg" alt="Logo" class="w-7 h-7"/> -->
+                                <h1 class="text-3xl inline-block text-transparent bg-gradient-to-l from-purple-200 via-violet-400 to-indigo-600 bg-clip-text  poppins-regular">Raaga</h1>
+                        </div>
+
+                        <!-- Search Bar with SVG and separator line -->
+                        <div class="flex-1 max-w-2xl mx-4">
+                            <div class="relative">
+                                <!-- Search Input -->
+                                <input 
+                                    id="searchBox" 
+                                    type="text" 
+                                    placeholder="What do you want to listen?" 
+                                    class="w-full pl-14 pr-10 py-2 rounded-full bg-[#282828] text-white border border-transparent 
+                                    focus:outline-none focus:ring-2 focus:ring-white focus:border-white
+                                    transition-all duration-150 ease-in-out hover:outline-none hover:ring-2 hover:ring-white hover:border-white" 
+                                />
+
+                                <!-- Search Icon -->
+                                <img 
+                                    src="Images/search.svg" 
+                                    alt="search logo"
+                                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 cursor-pointer"
+                                    onclick="document.getElementById('searchBox').focus()" 
+                                />
+
+                                <!-- Separator Line -->
+                                <div class="absolute left-10 top-1/2 -translate-y-1/2 h-5 w-px bg-gray-400"></div>
+
+                                <!-- Custom Clear Button (initially hidden) -->
+                                <button 
+                                    id="clearSearch" 
+                                    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white hidden"
+                                    aria-label="Clear search"
+                                >
+                                    <img src="Images/cancel.svg" alt="" class="w-5 h-5">
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Search Bar with SVG and seperator line finished -->
+
+                        <!-- Links of Header -->
+                        <div class="header-links flex gap-4 items-center px-4 py-2">
+                            <div class="flex items-center justify-between gap-2 bg-[#181818]">
+                                <a href="#" class="group flex gap-2 items-center px-4 py-2 transition-transform duration-200 hover:[scale:1.03]">
+                                    <div class="flex items-center gap-2">
+                                        <img src="Images/liked_songs_grey.svg" alt="Liked Songs SVG" class="w-3.5 h-3.5  transition-all duration-200" data-hover="Images/liked_songs_white.svg">
+                                        <span class="font-bold text-base text-[#B3B3B3] transition-colors duration-200 group-hover:text-white">Liked Songs</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-2 items-center px-4 py-2 transition-transform duration-200 hover:[scale:1.03]">
+                                    <div class="flex items-center gap-2">
+                                        <img src="Images/playlists_grey.svg" alt="Liked Songs SVG" class="w-3.5 h-3.5  transition-all duration-200" data-hover="Images/playlists_white.svg">
+                                        <span class="font-bold text-base text-[#B3B3B3] transition-colors duration-200 group-hover:text-white">PlayLists</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="flex items-center gap-2 px-4 py-2 ml-2 bg-white text-black font-bold rounded-xl transition-all ease-in-out duration-200 hover:[scale:1.05] text-lg">
+                                <img src="Images/premium.svg" alt="Get Premium SVG" class="w-6 h-6 transition-all duration-200 group-hover:scale-110">
+                                <span class="font-bold text-lg text-black transition-colors duration-200">Get Premium</span>
+                            </div>
+
+                        <div class="flex items-center gap-4 bg-[#181818] justify-between">
+                            <button id="loginButton" class="px-4 py-2 text-[#B3B3B3] font-bold hover:text-white hover:[scale:1.05] ease-in-out text-lg">Sign Up</button>
+                            <button id="signinButton" class="px-4 py-2 ml-2 bg-white text-black font-bold rounded-xl transition-all ease-in-out duration-200 hover:[scale:1.05] text-lg">Login</button>
+                        </div>
+                    </div>
+                </header>
+                <!-- Header Finished -->
+
+                <div class="p-4 overflow-y-auto">
+                    <!-- Carousel Section -->
+                    <div class="mb-4 relative">
+                        <div id="mainCarousel" class="relative w-full max-h-[600px] overflow-hidden rounded-xl">
+                            <!-- Carousel items -->
+                            <div class="flex transition-transform duration-300 ease-in-out">
+                                <!-- Image-1 -->
+                                <div class="w-full flex-shrink-0">
+                                    <img src="CAR/1.jpg" class="object-cover overflow-hidden w-full h-full" alt="slide 1">
+                                </div>
+                                <!-- Image 2 -->
+                                <div class="w-full flex-shrink-0">
+                                    <img src="CAR/3.jpg" class="object-cover overflow-hidden w-full h-full" alt="Slide 2">
+                                </div>
+                                <!-- Image 3 -->
+                                <div class="w-full flex-shrink-0">
+                                    <img src="CAR/4.jpg" class="object-cover overflow-hidden w-full h-full" alt="Slide 3">
+                                </div>
+                                <!-- Image 4 -->
+                                <div class="w-full flex-shrink-0">
+                                    <img src="CAR/2.jpg" class="object-cover overflow-hidden w-full h-full" alt="Slide 4">
+                                </div>
+                                <!-- Image 5 -->
+                                <div class="w-full flex-shrink-0">
+                                    <img src="CAR/5.jpg" class="object-cove overflow-hidden w-full h-full" alt="Slide 5">
+                                </div>
+                            </div>
+
+                            <!-- Carousel controls (arrows) -->
+                            <button
+                                class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+                                id="prevButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+
+                            <button
+                                class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+                                id="nextButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+
+                            <!-- Carousel Buttons -->
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <button
+                                    class="w-3 h-3 rounded-full bg-white bg-opacity-50 focus:bg-opacity-100"></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-white bg-opacity-50 focus:bg-opacity-100"></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-white bg-opacity-50 focus:bg-opacity-100"></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-white bg-opacity-50 focus:bg-opacity-100"></button>
+                                <button
+                                    class="w-3 h-3 rounded-full bg-white bg-opacity-50 focus:bg-opacity-100"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Albums Section -->
+                    <div class="mb-6 mt-11">
+                        <h1 class="text-2xl md:text-4xl font-bold text-white bg-gradient-to-b from-gray-300 via-gray-500 to-gray-700 inline-block text-transparent bg-clip-text  mb-4 md:mb-7 ml-2 md:ml-5">Top Albums<h1>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4 px-2 md:px-5">
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="Images/Album-1.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="albums.html?album=honeybhai">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="Images/Album-2.jpg" alt="Album Image 2" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">GLORY</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Honey Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=animal">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/animal.jpeg" alt="Album Image 3" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Animal</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Vishal Mishra</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=rockstar">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/rockstar.jpeg" alt="Album Image 4" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Rockstar</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">A.R. Rahman</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=kabir_singh">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/bhagmilkabhag.jpeg" alt="Album Image 5" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Bhaag Milka Bhaag</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Shankar-Ehsaan-Loy</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=ae_dil_hai_mushkil">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/adhm.jpeg" alt="Album Image 6" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Ae Dil Hai Mushkil</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Pritam</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a> 
+        
+                                    <a href="albums.html?album=yjhd">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/yjhd.jpeg" alt="Album Image 7" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Yeh Jawaani Hai Deewani</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Pritam</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=roy">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/roy.jpeg" alt="Album Image 8" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Roy</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Ankit Tiwari</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=dilwale">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/dilwale.jpeg" alt="Album Image 9" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Dilwale</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Pritam</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=half_girlfriend">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/hgf.webp" alt="Album Image 10" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Half Girlfriend</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Mithoon, Tanishk Bagchi</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=ek_villain">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/blackpanther.jpeg" alt="Album Image 11" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Black Panther</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Kendrick Lamar</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=sanam_re">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/sos.jpeg" alt="Album Image 12" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">SOS</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">SZA</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=raaz_reboot">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/jigro.jpeg" alt="Album Image 13" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Vrindavan</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Jigardan Gadhavi</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a href="albums.html?album=love_aaj_kal">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center">
+                                                    <img src="pics/lajkal.jpeg" alt="Album Image 14" class="object-cover w-full h-full">
+                                                </div>
+                                                <div class="w-full text-center">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Love Aaj Kal</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Pritam</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>  
+                                </div>
+                            </div>
+
+                    <!-- Artist Section -->
+                    <div class="mb-6 mt-11">
+                        <h1 class="text-2xl md:text-4xl font-bold text-white bg-gradient-to-b from-gray-300 via-gray-500 to-gray-700 inline-block text-transparent bg-clip-text  mb-4 md:mb-7 ml-2 md:ml-5">Top Artists</h1>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4 px-2 md:px-5">
+                            <!-- Artist 1 -->
+                            <a href="Artist.html?artist=arijit_singh">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="pics/arijitbro.jpeg" alt="Arijit Singh" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-2">Arijit Singh</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Artist 2 -->
+                            <a href="Artist.html?artist=the_weeknd">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="images/BLinding lights.jpeg" alt="The Weeknd" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">The Weeknd</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Artist 3 -->
+                            <a href="Artist.html?artist=ed_sheeran">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="pics/ed.jpeg" alt="Ed Sheeran" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Ed Sheeran</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Artist 4 -->
+                            <a href="Artist.html?artist=taylor_swift">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="pics/tay.jpeg" alt="Taylor Swift" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Taylor Swift</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Artist 5 -->
+                            <a href="Artist.html?artist=dua_lipa">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="pics/dua.jpeg" alt="Dua Lipa" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Dua Lipa</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Artist 6 -->
+                            <a href="Artist.html?artist=bad_bunny">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="pics/bruno2.jpeg" alt="Bad Bunny" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Bruno Mars</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Artist 7 -->
+                            <a href="Artist.html?artist=billie_eilish">
+                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition cursor-pointer">
+                                    <div class="relative flex flex-col items-center">
+                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-full flex justify-center items-center">
+                                            <img src="pics/billie.jpeg" alt="Billie Eilish" class="w-full h-full object-cover rounded-full">
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Billie Eilish</p>
+                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Artist</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <style>
+                            @keyframes marquee {
+                              from { transform: translateX(0); }
+                              to { transform: translateX(-100%); }
+                            }
+                           
+                            .animate-marquee {
+                              display: flex;
+                              white-space: nowrap;
+                              animation: marquee 20s linear infinite;
+                            }
+                          
+                            .marquee-container {
+                              /* overflow: hidden; */
+                              position: relative;
+                              white-space: nowrap;
+                              width: 100%;
+                              
+                             overflow-x: hidden;}
+                           </style>
+                           <!-- Top Singles Section -->
+                    <div class="mb-6 mt-11">
+                        <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 ml-2 md:ml-5">Top Singles<h1>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4 px-2 md:px-5">
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-1.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-2.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-3.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-4.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-5.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-6.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="albums.html?album=aashiqui2">
+                                        <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                            <div class="relative flex flex-col items-center">
+                                                <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                    <img src="Images/Album-7.jpg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                    
+                                                    <!-- Play Button (Bottom Right) -->
+                                                    <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                        <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                    <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mb-6 mt-11">
+                                <h1 class="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 ml-2 md:ml-5">Podcasts<h1>
+                                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4 px-2 md:px-5">
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_1.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_2.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+        
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_3.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+        
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_4.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+        
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_5.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+        
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_6.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+        
+                                            <a href="albums.html?album=aashiqui2">
+                                                <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition relative">
+                                                    <div class="relative flex flex-col items-center">
+                                                        <div class="w-full aspect-square mb-3 overflow-hidden rounded-lg flex justify-center items-center relative">
+                                                            <img src="Images/P_7.jpeg" alt="Album Image 1" class="object-cover w-full h-full">
+                                                            
+                                                            <!-- Play Button (Bottom Right) -->
+                                                            <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
+                                                                <button class="bg-green-500 text-white rounded-full p-3 md:p-4 shadow-lg">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+                                                                        <path fill-rule="evenodd" d="M4.5 3.75v16.5a1.5 1.5 0 0 0 2.25 1.312l12.75-8.25a1.5 1.5 0 0 0 0-2.624L6.75 2.438A1.5 1.5 0 0 0 4.5 3.75z" clip-rule="evenodd"/>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full">
+                                                            <p class="text-sm md:text-lg lg:text-xl font-bold line-clamp-1">Aashiqui 2</p>
+                                                            <p class="text-xs md:text-base text-gray-400 line-clamp-1">Arijit Singh</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                
+                                            
+                                        </div>
+                                    </div>
+                          <!-- Marquee -->
+                          <div class="mb-6 mt-11">
+                            <h1 class="text-2xl md:text-4xl font-bold text-white bg-gradient-to-b from-gray-300 via-gray-500 to-gray-700 inline-block text-transparent bg-clip-text  mb-4 md:mb-7 ml-2 md:ml-5">Top Albums</h1>
+                            <div class="marquee-container">
+                              <div class="animate-marquee">
+                                <div class="grid grid-cols-7 gap-2 md:gap-4 px-2 md:px-5 flex">
+                                  <!-- Repeat albums for continuous effect -->
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Bollywood</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <!-- Repeat the same album items to create the looping effect -->
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Bollywood</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="group hover:bg-[#b9b9b9] hover:bg-opacity-15 p-2 md:p-3 rounded-xl transition">
+                                    <div class="relative flex flex-col items-center">
+                                      <div class="w-full h-[350px] aspect-[1/2] mb-3 overflow-hidden rounded-lg flex justify-center items-center bg-gradient-to-br from-indigo-800 to-violet-200">
+                                        <p class="text-lg md:text-lg poppins-bold">Electronic</p>
+                                      </div>
+                                    </div>
+                                  
+                                  
+                                  <!-- End repeating albums -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>    
+            </main> 
+             
+                           
+
+            <!-- Background Layer with Blur -->
+            <div id="blurLayer" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-lg z-40 hidden"></div>
+
+            <!-- Login Modal -->
+            <div id="loginModal"
+                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#181818] p-8 rounded-lg shadow-xl w-96 max-w-sm z-50 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-semibold">Login</h2>
+                    <button class="close-modal text-gray-500 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label for="login-name" class="block text-base font-medium text-slate-300">Name</label>
+                        <input type="text" id="login-name" name="name" class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-white focus:border-white 
+                            transition-all duration-200 ease-in-out bg-gray-700" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="login-email" class="block text-base font-medium text-slate-300">Email</label>
+                        <input type="email" id="login-email" name="email"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-gray-700"
+                            required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-base font-medium text-slate-300">Password</label>
+                        <input type="password" id="login-password" name="password"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-slate-700"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Login</button>
+                </form>
+                <hr class="my-6 border-slate-600">
+                <div class="text-center">
+                    <p class="text-base text-slate-400">Don't have an Account?
+                        <a href="#" id="goToSignIn" class="text-indigo-500 hover:text-indigo-400">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sign Up Modal -->
+            <div id="signinModal"
+                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#181818] p-8 rounded-lg shadow-xl w-96 max-w-sm z-50 hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-semibold">Sign Up</h2>
+                    <button class="close-modal text-gray-500 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form>
+                    <div class="mb-4">
+                        <label for="signin-email" class="block text-base font-medium text-slate-300">Email</label>
+                        <input type="email" id="signin-email" name="email"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-slate-700"
+                            required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="signin-password" class="block text-base font-medium text-slate-300">Password</label>
+                        <input type="password" id="signin-password" name="password"
+                            class="w-full px-4 py-2 mt-2 border border-slate-600 rounded-md focus:ring-1 focus:ring-blue-300 focus:outline-none bg-slate-700"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Sign
+                        Up</button>
+                </form>
+                <hr class="my-6 border-slate-600">
+                <div class="text-center">
+                    <p class="text-base text-slate-400">Already have an Account?
+                        <a href="#" id="goToLogin" class="text-indigo-500 hover:text-indigo-400">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
